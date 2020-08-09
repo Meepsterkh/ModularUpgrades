@@ -1,0 +1,18 @@
+Ever wanted to Modify your Tools? Your Weapons? Your Armour? All Strait onto the piece itself?
+Modular Upgrades is here to bring that and more!
+
+[Info]
+This Mod lets you take Cores for tool types and Alternate them to your delight! For example giving a Tool Core the pick power of a PickSaw but with 200% Speed Increase!! This Modifications are on Core Armor, Core Tools, Core Weapons, Accesories And More!
+
+!!Very Early in Development but suggestions/communities are accepted in the Discord!!
+https://discord.gg/TsAXxuH
+
+[Added Features]
+* 19 Tool Items
+* 4 Blocks
+* A Biome
+
+[ChangeLog]
+v0.1.0 08/09/2020
+~ Added Basic Pre-Hardmode Items
+~ Added Blocks
