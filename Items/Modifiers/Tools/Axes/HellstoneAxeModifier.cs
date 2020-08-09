@@ -18,7 +18,7 @@ namespace Modular.Items.Modifiers.Tools.Axes
             item.value = 5400;
             item.rare = ItemRarityID.Orange;
 
-            item.axe = 14;
+            item.axe = 30;
         }
 
         public override void AddRecipes()

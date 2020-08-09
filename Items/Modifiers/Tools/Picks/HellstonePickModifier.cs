@@ -25,7 +25,7 @@ namespace Modular.Items.Modifiers.Tools.Picks
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Wood, 2);
+            recipe.AddIngredient(ItemID.HellstoneBar, 20);
             recipe.AddTile(TileID.WorkBenches);
             recipe.SetResult(this);
             recipe.AddRecipe();

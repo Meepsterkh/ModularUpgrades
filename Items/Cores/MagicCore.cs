@@ -48,5 +48,15 @@ namespace Modular.Items.Cores
 			time = reader.ReadInt32();
 			coldDamage = reader.ReadBoolean();
 		}
-    }
+
+		public override bool Autoload(ref string name)
+		{
+			/*if (GetType() == typeof(Core))
+			{
+				return false;
+			}
+			return true;*/
+			return false;
+		}
+	}
 }

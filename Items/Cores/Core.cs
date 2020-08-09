@@ -35,6 +35,17 @@ namespace Modular.Items.Cores
         {
             modifiedSlots = reader.ReadInt32();
         }
+
+        public override bool Autoload(ref string name)
+        {
+            if(GetType() == typeof(Core))
+            {
+                return false;
+            }
+            return true;
+        }
+
+
         private int coreType = 0;
         private Core TestCases(Core coreItem, Item modifierItem)
         {

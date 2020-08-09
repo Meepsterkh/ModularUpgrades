@@ -41,5 +41,14 @@ namespace Modular.Items.Modifiers
 			time = reader.ReadInt32();
 			coldDamage = reader.ReadBoolean();
 		}
+
+		public override bool Autoload(ref string name)
+		{
+			if (GetType() == typeof(Modifier))
+			{
+				return false;
+			}
+			return true;
+		}
 	}
 }

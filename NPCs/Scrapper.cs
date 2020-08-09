@@ -169,24 +169,24 @@ namespace Modular.NPCs           //We need this to basically indicate the folder
         }
 
         //----------------------------------This is an example of how to make the npc use a gun and a projectile ----------------------------------
-        *//*public override void DrawTownAttackGun(ref float scale, ref int item, ref int closeness) //Allows you to customize how this town NPC's weapon is drawn when this NPC is shooting (this NPC must have an attack type of 1). Scale is a multiplier for the item's drawing size, item is the ID of the item to be drawn, and closeness is how close the item should be drawn to the NPC.
-          {
-              scale = 1f;
-              item = mod.ItemType("GunName");  
-              closeness = 20;
-          }
-          public override void TownNPCAttackProj(ref int projType, ref int attackDelay)//Allows you to determine the projectile type of this town NPC's attack, and how long it takes for the projectile to actually appear
-          {
-              projType = ProjectileID.CrystalBullet;
-              attackDelay = 1;
-          }
- 
-          public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset)//Allows you to determine the speed at which this town NPC throws a projectile when it attacks. Multiplier is the speed of the projectile, gravityCorrection is how much extra the projectile gets thrown upwards, and randomOffset allows you to randomize the projectile's velocity in a square centered around the original velocity
-          {
-              multiplier = 7f;
-             // randomOffset = 4f;
- 
-          }   *//*
+        public override void DrawTownAttackGun(ref float scale, ref int item, ref int closeness) //Allows you to customize how this town NPC's weapon is drawn when this NPC is shooting (this NPC must have an attack type of 1). Scale is a multiplier for the item's drawing size, item is the ID of the item to be drawn, and closeness is how close the item should be drawn to the NPC.
+        {
+            scale = 1f;
+            item = mod.ItemType("GunName");
+            closeness = 20;
+        }
+        public override void TownNPCAttackProj(ref int projType, ref int attackDelay)//Allows you to determine the projectile type of this town NPC's attack, and how long it takes for the projectile to actually appear
+        {
+            projType = ProjectileID.CrystalBullet;
+            attackDelay = 1;
+        }
+
+        public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset)//Allows you to determine the speed at which this town NPC throws a projectile when it attacks. Multiplier is the speed of the projectile, gravityCorrection is how much extra the projectile gets thrown upwards, and randomOffset allows you to randomize the projectile's velocity in a square centered around the original velocity
+        {
+            multiplier = 7f;
+            // randomOffset = 4f;
+
+        }
 
     }
 }*/

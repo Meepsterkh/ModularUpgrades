@@ -25,7 +25,7 @@ namespace Modular.Projectiles       //We need this to basically indicate the fol
         private Color color = default;
         public void SetColor(Color newColor)
         {
-            Main.NewText("color: " + num++);
+            // Main.NewText("color: " + num++);
             color = newColor;
         }
 
@@ -33,7 +33,7 @@ namespace Modular.Projectiles       //We need this to basically indicate the fol
         private float[] RGB = new float[3];
         public void SetLighting(float RPercent, float GPercent, float BPercent)
         {
-            Main.NewText("lighting: " + num++);
+            // Main.NewText("lighting: " + num++);
             RGB[0] = RPercent;
             RGB[1] = GPercent;
             RGB[2] = BPercent;
@@ -82,10 +82,10 @@ namespace Modular.Projectiles       //We need this to basically indicate the fol
         private bool played = false;
         private void ChangeProperties()
         {
-            Main.NewText("ree: " + num++);
+            // Main.NewText("ree: " + num++);
             if (!played)
             {
-                Main.NewText("ree: " + num++);
+                // Main.NewText("ree: " + num++);
                 Item tempItem = Main.LocalPlayer.inventory[Main.LocalPlayer.selectedItem];
                 // Main.NewText(temp.Name);
 

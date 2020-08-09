@@ -25,5 +25,14 @@ namespace Modular.Items.Cores
 			item.damage = tag.GetInt("Damage");
 			item.lifeRegen = tag.GetInt("LifeRegen");
 		}
+
+		public override bool Autoload(ref string name)
+		{
+			if (GetType() == typeof(ToolCore))
+			{
+				return false;
+			}
+			return true;
+		}
 	}
 }

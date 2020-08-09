@@ -11,7 +11,7 @@ namespace Modular
 {
 	public class Modular : Mod
 	{
-		internal UserInterface ModifierAdditionInteraface;
+		public UserInterface ModifierAdditionInteraface;
 
 
 		public override void Load()
