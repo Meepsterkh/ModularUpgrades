@@ -12,26 +12,29 @@ namespace Modular
 	public class Modular : Mod
 	{
 		public UserInterface ModifierAdditionInteraface;
+		public UserInterface ScrapperInterface;
 
 
 		public override void Load()
         {
 			if(!Main.dedServ)
-            {
+			{
 				ModifierAdditionInteraface = new UserInterface();
+				ScrapperInterface = new UserInterface();
 			}
 		}
 
-		public UserInterface GetInterface()
+		/*public UserInterface GetInterface()
         {
 			return ModifierAdditionInteraface;
-        }
+        }*/
 
 		public override void UpdateUI(GameTime gameTime)
 		{
 			if(!Main.gameMenu)
-            {
+			{
 				ModifierAdditionInteraface?.Update(gameTime);
+				ScrapperInterface?.Update(gameTime);
             }
 		}
 
@@ -45,9 +48,7 @@ namespace Modular
 			{
 
 				layers.Insert(
-
 					mouseTextIndex,
-
 					new LegacyGameInterfaceLayer(
 						"ModularClass: Modifier Menu",
 							delegate {
@@ -56,7 +57,18 @@ namespace Modular
 							},
 						InterfaceScaleType.UI
 					)
+				);
 
+				layers.Insert(
+					mouseTextIndex,
+					new LegacyGameInterfaceLayer(
+						"ModularClass: Modifier Menu",
+							delegate {
+								ScrapperInterface.Draw(Main.spriteBatch, new GameTime());
+								return true;
+							},
+						InterfaceScaleType.UI
+					)
 				);
 			}
 

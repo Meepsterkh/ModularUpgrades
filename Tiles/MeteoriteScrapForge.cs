@@ -8,9 +8,9 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Modular.Tiles
 {
-    class WoodenScrapForge : ModTile
+    class MeteoriteScrapForge : ModTile
 	{
-        private ModifierUI multiItemUI = new ModifierUI(1);
+        private ModifierUI multiItemUI = new ModifierUI(2);
 
 		public override void SetDefaults()
 		{
@@ -20,8 +20,8 @@ namespace Modular.Tiles
 
 			TileObjectData.addTile(Type);
 			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Wooden Scrap Forge");
-			AddMapEntry(new Color(200, 150, 0), name);
+			name.SetDefault("Meteorite Scrap Forge");
+			AddMapEntry(new Color(102, 0, 204), name);
 		}
 		public override bool HasSmartInteract()
 		{
@@ -84,7 +84,7 @@ namespace Modular.Tiles
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
 			Close();
-            Item.NewItem(i * 16, j * 16, 40, 40, ItemType<Items.Placeable.WoodenScrapForge>());
+            Item.NewItem(i * 16, j * 16, 40, 40, ItemType<Items.Placeable.MeteoriteScrapForge>());
         }
     }
 }

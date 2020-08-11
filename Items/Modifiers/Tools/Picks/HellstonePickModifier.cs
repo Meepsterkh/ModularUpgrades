@@ -16,7 +16,7 @@ namespace Modular.Items.Modifiers.Tools.Picks
             item.SetNameOverride("Molten Modifier");
             item.Size = new Vector2(40);
             item.maxStack = 1;
-            item.value = 100;
+            item.value = 7300;
             item.rare = ItemRarityID.White;
 
             item.pick = 100;

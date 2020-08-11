@@ -1,15 +1,34 @@
-﻿/*using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Modular.Items.Cores;
+using Modular.Items.Modifiers.Tools.Picks;
+using Modular.Items.Modifiers.Tools.Axes;
+using Modular.Items.Modifiers.Tools.Hammers;
+using Modular.Items.Placeable;
 
 namespace Modular.NPCs           //We need this to basically indicate the folder where it is to be read from, so you the texture will load correctly
 {
+    [AutoloadHead]
     public class Scrapper : ModNPC
     {
+        public override void SetStaticDefaults()
+        {
+            // DisplayName automatically assigned from .lang files, but the commented line below is the normal approach.
+            // DisplayName.SetDefault("Example Person");
+            Main.npcFrameCount[npc.type] = 25; //this defines how many frames the npc sprite sheet has
+            NPCID.Sets.ExtraFramesCount[npc.type] = 9;
+            NPCID.Sets.AttackFrameCount[npc.type] = 4;
+            NPCID.Sets.DangerDetectRange[npc.type] = 150; //this defines the npc danger detect range
+            NPCID.Sets.AttackType[npc.type] = 3; //this is the attack type,  0 (throwing), 1 (shooting), or 2 (magic). 3 (melee) 
+            NPCID.Sets.AttackTime[npc.type] = 30; //this defines the npc attack speed
+            NPCID.Sets.AttackAverageChance[npc.type] = 10;//this defines the npc atack chance
+            NPCID.Sets.HatOffsetY[npc.type] = 4; //this defines the party hat position
+        }
+
         public override void SetDefaults()
         {
             npc.townNPC = true; //This defines if the npc is a town Npc or not
@@ -22,34 +41,31 @@ namespace Modular.NPCs           //We need this to basically indicate the folder
             npc.HitSound = SoundID.NPCHit1;  //the npc sound when is hit
             npc.DeathSound = SoundID.NPCDeath1;  //the npc sound when he dies
             npc.knockBackResist = 0.5f;  //the npc knockback resistance
-            Main.npcFrameCount[npc.type] = 25; //this defines how many frames the npc sprite sheet has
-            NPCID.Sets.ExtraFramesCount[npc.type] = 9;
-            NPCID.Sets.AttackFrameCount[npc.type] = 4;
-            NPCID.Sets.DangerDetectRange[npc.type] = 150; //this defines the npc danger detect range
-            NPCID.Sets.AttackType[npc.type] = 3; //this is the attack type,  0 (throwing), 1 (shooting), or 2 (magic). 3 (melee) 
-            NPCID.Sets.AttackTime[npc.type] = 30; //this defines the npc attack speed
-            NPCID.Sets.AttackAverageChance[npc.type] = 10;//this defines the npc atack chance
-            NPCID.Sets.HatOffsetY[npc.type] = 4; //this defines the party hat position
             animationType = NPCID.Guide;  //this copy the guide animation
         }
         public override bool CanTownNPCSpawn(int numTownNPCs, int money) //Whether or not the conditions have been met for this town NPC to be able to move into town.
         {
-            for (int k = 0; k < 255; k++)
+            Main.NewText("Start:");
+            int counter = 0;
+            
+            for (int k = 0; k <= Main.PlayerList.Count; k++)
             {
                 Player player = Main.player[k];
+                Main.NewText(player.name + " : " + k);
                 if (!player.active)
                 {
                     continue;
                 }
 
-                int counter = 0;
                 foreach (Item item in player.inventory)
                 {
+                    Main.NewText(counter);
                     if (item.modItem is Core)
                     {
                         counter++;
-                        if (counter >= 2)
+                        if (counter >= 5)
                         {
+                            Main.NewText("Success");
                             return true;
                         }
                     }
@@ -57,34 +73,35 @@ namespace Modular.NPCs           //We need this to basically indicate the folder
             }
             return false;
         }
-        public override bool CheckConditions(int left, int right, int top, int bottom)    //Allows you to define special conditions required for this town NPC's house
+        /*public override bool CheckConditions(int left, int right, int top, int bottom)    //Allows you to define special conditions required for this town NPC's house
         {
             return true;  //so when a house is available the npc will  spawn
-        }
+        }*/
         public override string TownNPCName()     //Allows you to give this town NPC any name when it spawns
         {
             switch (WorldGen.genRand.Next(6))
             {
                 case 0:
-                    return "Rick";
+                    return "Kazy";
                 case 1:
-                    return "Denis";
+                    return "Dylan";
                 case 2:
-                    return "Heisenberg";
+                    return "Heath";
                 case 3:
-                    return "Jack";
+                    return "Cilin";
                 case 4:
-                    return "Blue Magic";
+                    return "Arizona";
                 case 5:
-                    return "Blue";
+                    return "Ender";
                 default:
-                    return "Walter";
+                    return "Sereal";
             }
         }
 
         public override void SetChatButtons(ref string button, ref string button2)  //Allows you to set the text for the buttons that appear on this town NPC's chat window. 
         {
-            button = "Buy Potions";   //this defines the buy button name
+            button = "Buy Modifiers";
+            button2 = "Wipe Modifiers";
         }
         public override void OnChatButtonClicked(bool firstButton, ref bool openShop) //Allows you to make something happen whenever a button is clicked on this town NPC's chat window. The firstButton parameter tells whether the first button or second button (button and button2 from SetChatButtons) was clicked. Set the shop parameter to true to open this NPC's shop.
         {
@@ -93,11 +110,21 @@ namespace Modular.NPCs           //We need this to basically indicate the folder
             {
                 openShop = true;   //so when you click on buy button opens the shop
             }
+            else
+            {
+                // If the 2nd button is pressed, open the inventory...
+                Main.playerInventory = true;
+                // remove the chat window...
+                Main.npcChatText = "";
+                // and start an instance of our UIState.
+                GetInstance<Modular>().ScrapperInterface.SetState(new UI.ScrapperUI());
+                // Note that even though we remove the chat window, Main.LocalPlayer.talkNPC will still be set correctly and we are still technically chatting with the npc.
+            }
         }
 
         public override void SetupShop(Chest shop, ref int nextSlot)       //Allows you to add items to this town NPC's shop. Add an item by setting the defaults of shop.item[nextSlot] then incrementing nextSlot.
         {
-            if (NPC.downedSlimeKing)   //this make so when the king slime is killed the town npc will sell this
+            /*if (NPC.downedSlimeKing)   //this make so when the king slime is killed the town npc will sell this
             {
                 shop.item[nextSlot].SetDefaults(ItemID.RecallPotion);  //an example of how to add a vanilla terraria item
                 nextSlot++;
@@ -110,8 +137,14 @@ namespace Modular.NPCs           //We need this to basically indicate the folder
                 nextSlot++;
                 shop.item[nextSlot].SetDefaults(ItemID.ClothierVoodooDoll);
                 nextSlot++;
-            }
-            shop.item[nextSlot].SetDefaults(ItemID.IronskinPotion);
+            }*/
+            shop.item[nextSlot].SetDefaults(ItemType<WoodenScrapForge>());
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(ItemType<GoldPickModifier>());
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(ItemType<GoldAxeModifier>());
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(ItemType<GoldHammerModifier>());
             nextSlot++;
 
         }
@@ -123,27 +156,27 @@ namespace Modular.NPCs           //We need this to basically indicate the folder
             {
                 return "Yes " + Main.npc[wizardNPC].GivenName + " is a wizard.";
             }
-            int guideNPC = NPC.FindFirstNPC(NPCID.Guide); //this make so when this npc is close to the Guide
+            /*int guideNPC = NPC.FindFirstNPC(NPCID.Guide); //this make so when this npc is close to the Guide
             if (guideNPC >= 0 && Main.rand.Next(4) == 0) //has 1 in 3 chance to show this message
             {
                 return "Sure you can ask " + Main.npc[guideNPC].GivenName + " how to make Ironskin potion or you can buy it from me..hehehe.";
-            }
+            }*/
             switch (Main.rand.Next(4))    //this are the messages when you talk to the npc
             {
                 case 0:
-                    return "You wanna buy something?";
+                    return "Is that catnip you have?";
                 case 1:
-                    return "What you want?";
+                    return "I'm not a talking cat!";
                 case 2:
-                    return "I like this house.";
+                    return "Is there any dogs here? no? good.";
                 case 3:
-                    return "<I'm blue dabu di dabu dai>....OH HELLO THERE..";
+                    return "Your tool doesnt have enough modifications";
                 default:
-                    return "Go kill Skeletron.";
+                    return "Welcome home pet.";
 
             }
         }
-        public override void TownNPCAttackStrength(ref int damage, ref float knockback)//  Allows you to determine the damage and knockback of this town NPC attack
+       public override void TownNPCAttackStrength(ref int damage, ref float knockback)//  Allows you to determine the damage and knockback of this town NPC attack
         {
             damage = 40;  //npc damage
             knockback = 2f;   //npc knockback
@@ -169,7 +202,7 @@ namespace Modular.NPCs           //We need this to basically indicate the folder
         }
 
         //----------------------------------This is an example of how to make the npc use a gun and a projectile ----------------------------------
-        public override void DrawTownAttackGun(ref float scale, ref int item, ref int closeness) //Allows you to customize how this town NPC's weapon is drawn when this NPC is shooting (this NPC must have an attack type of 1). Scale is a multiplier for the item's drawing size, item is the ID of the item to be drawn, and closeness is how close the item should be drawn to the NPC.
+        /*public override void DrawTownAttackGun(ref float scale, ref int item, ref int closeness) //Allows you to customize how this town NPC's weapon is drawn when this NPC is shooting (this NPC must have an attack type of 1). Scale is a multiplier for the item's drawing size, item is the ID of the item to be drawn, and closeness is how close the item should be drawn to the NPC.
         {
             scale = 1f;
             item = mod.ItemType("GunName");
@@ -185,8 +218,7 @@ namespace Modular.NPCs           //We need this to basically indicate the folder
         {
             multiplier = 7f;
             // randomOffset = 4f;
-
-        }
+        }*/
 
     }
-}*/
+}

@@ -14,7 +14,7 @@ namespace Modular.Items.Modifiers.Tools.Hammers
         {
             item.Size = new Vector2(40);
             item.maxStack = 1;
-            item.value = 80;
+            item.value = 1000;
             item.rare = ItemRarityID.White;
 
             item.hammer = 35;

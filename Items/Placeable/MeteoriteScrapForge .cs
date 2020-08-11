@@ -4,7 +4,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Modular.Items.Placeable
 {
-    class WoodenScrapForge : ModItem
+    class MeteoriteScrapForge : ModItem
     {
 		public override void SetStaticDefaults()
 		{
@@ -22,15 +22,15 @@ namespace Modular.Items.Placeable
 			item.useTime = 10;
 			item.useStyle = ItemUseStyleID.SwingThrow;
 			item.consumable = true;
-			item.value = 1000;
-			item.createTile = TileType<Tiles.WoodenScrapForge>();
+			item.value = 10000;
+			item.createTile = TileType<Tiles.MeteoriteScrapForge>();
 		}
 
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.Acorn, 10);
-			recipe.AddRecipeGroup("Wood", 100);
+			recipe.AddIngredient(ItemID.MeteoriteBar, 50);
+			recipe.AddIngredient(ItemType<PlexiyBlock>(), 10);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}

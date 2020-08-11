@@ -14,7 +14,7 @@ namespace Modular.Items.Modifiers.Tools.Axes
         {
             item.Size = new Vector2(40);
             item.maxStack = 1;
-            item.value = 1500;
+            item.value = 5000;
             item.rare = ItemRarityID.Blue;
 
             item.axe = 20;

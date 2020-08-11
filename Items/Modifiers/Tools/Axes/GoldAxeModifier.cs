@@ -14,7 +14,7 @@ namespace Modular.Items.Modifiers.Tools.Axes
         {
             item.Size = new Vector2(40);
             item.maxStack = 1;
-            item.value = 1600;
+            item.value = 5000;
             item.rare = ItemRarityID.White;
 
             item.axe = 11;
@@ -24,7 +24,7 @@ namespace Modular.Items.Modifiers.Tools.Axes
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.GoldBar, 9);
-            recipe.AddTile(TileID.WorkBenches);
+            recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

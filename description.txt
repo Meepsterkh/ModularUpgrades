@@ -8,11 +8,17 @@ This Mod lets you take Cores for tool types and Alternate them to your delight! 
 https://discord.gg/TsAXxuH
 
 [Added Features]
-* 19 Tool Items
-* 4 Blocks
+* 20 Items
+* 5 Blocks
 * A Biome
 
 [ChangeLog]
+
+v0.2.0 08/10/2020
+~ Fixed Bugs
+~ Added NPC Scrapper
+~ Changed Wooden Scrap Forge
+~ Added More Scrap Forges
 
 v0.1.4 08/09/2020
 ~ Fixing Crafting recipes 

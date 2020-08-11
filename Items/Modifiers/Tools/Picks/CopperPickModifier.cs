@@ -16,7 +16,7 @@ namespace Modular.Items.Modifiers.Tools.Picks
         {
             item.Size = new Vector2(40);
             item.maxStack = 1;
-            item.value = 100;
+            item.value = 1000;
             item.rare = ItemRarityID.White;
 
             item.pick = 35;
