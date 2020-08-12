@@ -14,7 +14,7 @@ https://discord.gg/TsAXxuH
 
 [ChangeLog]
 
-v0.2.0 08/10/2020
+v0.1.5 08/10/2020
 ~ Fixed Bugs
 ~ Added NPC Scrapper
 ~ Changed Wooden Scrap Forge
